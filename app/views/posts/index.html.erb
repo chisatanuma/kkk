@@ -1,0 +1,16 @@
+<div class="main posts-index">
+  <div class="container">
+    <% @posts.each do |post| %>
+      <div class="posts-index-item">
+         <img src="<%= "/user_images/#{post.image_name}" %>">
+        <div class="posts-add">
+        <%= link_to(post.name, "/posts/#{post.id}") %>
+         <div>
+         <div class="posts-right">
+        <%= link_to(post.content, "/posts/#{post.id}") %>
+          </div>
+          </div>
+    <% end %>
+</div>
+</div>
+© 2019 GitHub, Inc.

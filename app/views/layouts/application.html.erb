@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BrandApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/earlyaccess/kokoro.css" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Courgette|Kalam&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <header>
+      <div class="header-logo">
+        <% if @current_user %>
+        <%= link_to("brandnew", "/") %>
+        <% else %>
+          <%= link_to("brandnew", "/") %>
+        <% end %>
+      </div>
+      <ul class="header-menus">
+        <!-- @current_userに書き換えてください -->
+        <% if @current_user %>
+          <li>
+            <!-- @current_userに書き換えてください -->
+            <%= link_to(@current_user.name, "/users/#{@current_user.id}") %>
+          </li>
+        <li>
+          <%= link_to("New Item", "/posts/index") %>
+        </li>
+        <li>
+           <!-- ログアウト用のリンクを追加してください -->
+           <%= link_to("logout", "/logout", {method: :post}) %>
+         </li>
+         <% else %>
+         <li>
+           <%= link_to("about", "/about") %>
+         </li>
+         <li>
+           <%= link_to("New Item", "/posts/index") %>
+         </li>
+         <li>
+           <%= link_to("signup", "/signup") %>
+         </li>
+        <li>
+          <!-- ログインページへのリンクを作成してください -->
+          <%= link_to("login", "/login") %>
+        </li>
+        <% end %>
+        <% if @current_user && @current_user.admin? %>
+      <li>
+       <%= link_to("追加", "/posts/new") %>
+      </li>
+      <li>
+        <%= link_to("会員一覧", "/users/index") %>
+      </li>
+ <% end %>
+　　　　
+      </ul>
+    </header>
+
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>
