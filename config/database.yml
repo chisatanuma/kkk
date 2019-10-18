@@ -21,7 +21,6 @@ test:
   database: db/test.sqlite3
 
 production:
- <<: *default
- adapter: postgresql
- encoding: unicode
- pool: 5
+ url: <%= ENV['postgres://ouqdomtirriobs:7aa901ea8e03c34b3a3b747cb606cc1acb
+c354b0bd5d1c557a182f85e59b5b7a@ec2-107-21-200-103.compute-1.amazonaws.com:5432/d9ofjuk
+kh3dik9'] %>
