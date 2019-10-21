@@ -5,22 +5,24 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  adapter: postgresql
+encoding: utf8
+pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+username: user
+password: pass
+host: localhost
+timeout: 5000
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: hoge_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: hoge_test
 
 production:
- url: <%= ENV['postgres://ouqdomtirriobs:7aa901ea8e03c34b3a3b747cb606cc1acb
-c354b0bd5d1c557a182f85e59b5b7a@ec2-107-21-200-103.compute-1.amazonaws.com:5432/d9ofjuk
-kh3dik9'] %>
+ database: hoge_production
